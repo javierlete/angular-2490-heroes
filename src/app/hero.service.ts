@@ -21,4 +21,9 @@ export class HeroService {
     this.messageService.add(`HeroService: fetched hero id=${id}`);
     return this.http.get<Hero>(this.heroesUrl + id);
   }
+
+  updateHero(hero: Hero): Observable<Hero> {
+    this.messageService.add(`HeroService: updated hero id=${hero.id}`);
+    return this.http.put<Hero>(this.heroesUrl + hero.id, hero);
+  }
 }
