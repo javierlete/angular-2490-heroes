@@ -22,6 +22,16 @@ export class HeroService {
     return this.http.get<Hero>(this.heroesUrl + id);
   }
 
+  searchHeroes(term: string): Observable<Hero[]> {
+    if (!term.trim()) {
+      // if not search term, return empty hero array.
+      return of([]);
+    }
+
+    this.messageService.add(`HeroService: fetched heroes matching "${term}"`);
+    return this.http.get<Hero[]>(`${this.heroesUrl}?name_like=${term}`);
+  }
+
   addHero(hero: Hero) {
     this.messageService.add(`HeroService: added hero ${hero.name}`);
     return this.http.post<Hero>(this.heroesUrl, hero);
