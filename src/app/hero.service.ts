@@ -22,6 +22,10 @@ export class HeroService {
     return this.http.get<Hero>(this.heroesUrl + id);
   }
 
+  addHero(hero: Hero) {
+    this.messageService.add(`HeroService: added hero ${hero.name}`);
+    return this.http.post<Hero>(this.heroesUrl, hero);
+  }
   updateHero(hero: Hero): Observable<Hero> {
     this.messageService.add(`HeroService: updated hero id=${hero.id}`);
     return this.http.put<Hero>(this.heroesUrl + hero.id, hero);
