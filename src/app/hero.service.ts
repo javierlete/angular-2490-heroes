@@ -30,4 +30,9 @@ export class HeroService {
     this.messageService.add(`HeroService: updated hero id=${hero.id}`);
     return this.http.put<Hero>(this.heroesUrl + hero.id, hero);
   }
+
+  deleteHero(id: number): Observable<any> {
+    this.messageService.add(`HeroService: deleting hero id=${id}`);
+    return this.http.delete<Hero>(this.heroesUrl + id);
+  }
 }
